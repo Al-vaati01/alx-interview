@@ -3,7 +3,7 @@ def pascal_triangle(n):
     placeholder = 0
     count = 0
     if (n <= 0):
-        return []
+        return final
 
     while count < n:
         placeholder = (11 ** count)
@@ -11,6 +11,3 @@ def pascal_triangle(n):
         final.append([int(a) for a in str(placeholder)])
     for i in final:
         print(i, sep="\n")
-
-
-pascal_triangle(1)
