@@ -9,5 +9,5 @@ def pascal_triangle(n):
         placeholder = (11 ** count)
         count += 1
         final.append([int(a) for a in str(placeholder)])
-    for i in final:
-        print(i, sep="\n")
+
+    return final
