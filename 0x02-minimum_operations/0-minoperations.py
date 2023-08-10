@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
+"""
+Operations module
+"""
+
+
 def minOperations(n):
     """
-    Calculates the fewest number of operations needed to result
-    in exactly 'n' H characters in the file.
+    a method that calculates the fewest number of operations
+    needed to result in exactly n H characters in the file.
 
     Args:
         n (int): The target number of H characters.
@@ -15,14 +20,14 @@ def minOperations(n):
     if n <= 1:
         return 0
 
-    result = 0
+    opResult = 0
+    factor = 2
 
-    for i in range(2, int(n**0.5) + 1):
-        while n % i == 0:
-            result += i
-            n //= i
+    while factor <= n:
+        if n % factor == 0:
+            opResult += factor
+            n /= factor
+        else:
+            factor += 1
 
-    if n > 1:
-        result += n
-
-    return result
+    return opResult
