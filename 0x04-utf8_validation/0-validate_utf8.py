@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """
-validates whether a
-string of ints represents a valid UTF-8 encoding.
+validates whether a string of ints represents a valid UTF-8 encoding.
 """
+
 from itertools import takewhile
 
 
@@ -21,8 +21,9 @@ def int_to_bits(nums):
 
 def validUTF8(data):
     """
+    validate function
     Args:
-        data : List of ints representing possible UTF-8 encoding
+        data : List representing UTF-8 encoding
     Return:
         bool : True or False
     """
