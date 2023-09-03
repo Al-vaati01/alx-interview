@@ -9,6 +9,7 @@ output
 [[0, 3], [1, 0], [2, 4], [3, 1], [4, 5], [5, 2]]
 [[0, 4], [1, 2], [2, 0], [3, 5], [4, 3], [5, 1]]
 """
+import sys
 
 
 def nqueens(n):
@@ -21,17 +22,6 @@ def nqueens(n):
     Returns:
       A list of lists, where each inner list represents a row of queens.
     """
-    if type(n) is not int:
-        print("n must be a number")
-        return
-    elif n < 4:
-        print("N must be at least 4")
-        return
-    elif type(n) is int and n >= 4:
-        n = int(n)
-    else:
-        print("Usage: nqueens N")
-        return
     solutions = []
     for i in range(n):
         solution = [[False for j in range(n)] for k in range(n)]
@@ -99,3 +89,20 @@ def _get_solution_list(solution):
     for i in range(len(solution)):
         solution_list.append([solution[i][j] for j in range(len(solution[0]))])
     return solution_list
+
+
+input = sys.argv
+if len(input) != 2:
+    print("Usage: nqueens N")
+    sys.exit(1)
+try:
+    n = int(input[1])
+except ValueError:
+    print("N must be a number")
+    sys.exit(1)
+if n < 4:
+    print("N must be at least 4")
+    sys.exit(1)
+solutions = nqueens(n)
+for solution in solutions:
+    print(solution)
