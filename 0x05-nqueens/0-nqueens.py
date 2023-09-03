@@ -9,6 +9,8 @@ output
 [[0, 3], [1, 0], [2, 4], [3, 1], [4, 5], [5, 2]]
 [[0, 4], [1, 2], [2, 0], [3, 5], [4, 3], [5, 1]]
 """
+
+
 import sys
 
 
@@ -20,14 +22,14 @@ def nqueens(n):
       n: The number of queens.
 
     Returns:
-      A list of lists, where each inner list represents a row of queens.
+      A list of solutions, where each solution is a list of queen positions.
     """
     solutions = []
     for i in range(n):
-        solution = [[False for j in range(n)] for k in range(n)]
-        solution[i][0] = True
+        solution = [-1] * n
+        solution[0] = i
         if _solve(solution, 1):
-            solutions.append(_get_solution_list(solution))
+            solutions.append(solution)
     return solutions
 
 
@@ -42,14 +44,14 @@ def _solve(solution, row):
     Returns:
       True if the solution is valid, False otherwise.
     """
-    if row == len(solution[0]):
+    if row == len(solution):
         return True
-    for col in range(len(solution[0])):
+    for col in range(len(solution)):
         if _is_valid(solution, row, col):
-            solution[row][col] = True
+            solution[row] = col
             if _solve(solution, row + 1):
                 return True
-            solution[row][col] = False
+            solution[row] = -1
     return False
 
 
@@ -66,29 +68,9 @@ def _is_valid(solution, row, col):
       True if the queen can be placed, False otherwise.
     """
     for i in range(row):
-        if solution[i][col]:
+        if solution[i] == col or abs(solution[i] - col) == abs(i - row):
             return False
-    for i in range(row):
-        for j in range(col):
-            if solution[i][j] and (col - j == row - i or col + j == row - i):
-                return False
     return True
-
-
-def _get_solution_list(solution):
-    """
-    Converts the solution from a 2D array to a list of lists.
-
-    Args:
-      solution: The solution as a 2D array.
-
-    Returns:
-      A list of lists, where each inner list represents a row of queens.
-    """
-    solution_list = []
-    for i in range(len(solution)):
-        solution_list.append([solution[i][j] for j in range(len(solution[0]))])
-    return solution_list
 
 
 input = sys.argv
@@ -105,4 +87,5 @@ if n < 4:
     sys.exit(1)
 solutions = nqueens(n)
 for solution in solutions:
-    print(solution)
+    solution_list = [[row, col] for row, col in enumerate(solution)]
+    print(solution_list)
