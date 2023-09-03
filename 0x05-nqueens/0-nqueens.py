@@ -21,12 +21,23 @@ def nqueens(n):
     Returns:
       A list of lists, where each inner list represents a row of queens.
     """
+    if type(n) is not int:
+        print("n must be a number")
+        return
+    elif n < 4:
+        print("N must be at least 4")
+        return
+    elif type(n) is int and n >= 4:
+        n = int(n)
+    else:
+        print("Usage: nqueens N")
+        return
     solutions = []
     for i in range(n):
         solution = [[False for j in range(n)] for k in range(n)]
         solution[i][0] = True
         if _solve(solution, 1):
-            solutions.append(solution)
+            solutions.append(_get_solution_list(solution))
     return solutions
 
 
@@ -72,3 +83,19 @@ def _is_valid(solution, row, col):
             if solution[i][j] and (col - j == row - i or col + j == row - i):
                 return False
     return True
+
+
+def _get_solution_list(solution):
+    """
+    Converts the solution from a 2D array to a list of lists.
+
+    Args:
+      solution: The solution as a 2D array.
+
+    Returns:
+      A list of lists, where each inner list represents a row of queens.
+    """
+    solution_list = []
+    for i in range(len(solution)):
+        solution_list.append([solution[i][j] for j in range(len(solution[0]))])
+    return solution_list
