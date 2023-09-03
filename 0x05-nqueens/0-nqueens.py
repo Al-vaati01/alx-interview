@@ -73,19 +73,23 @@ def _is_valid(solution, row, col):
     return True
 
 
-input = sys.argv
-if len(input) != 2:
+if len(sys.argv) != 2:
     print("Usage: nqueens N")
     sys.exit(1)
+
 try:
-    n = int(input[1])
+    n = int(sys.argv[1])
 except ValueError:
     print("N must be a number")
     sys.exit(1)
+
 if n < 4:
     print("N must be at least 4")
     sys.exit(1)
+
 solutions = nqueens(n)
 for solution in solutions:
     solution_list = [[row, col] for row, col in enumerate(solution)]
-    print(solution_list)
+    for row, col in solution_list:
+        print(f"[{row}, {col}]", end=" ")
+    print()
