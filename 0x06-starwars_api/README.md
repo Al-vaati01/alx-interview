@@ -37,6 +37,7 @@ $ node 0-starwars_characters.js 3
 This command will print the list of characters from "Return of the Jedi" (Movie ID 3) to the console, one character name per line.
 
 **Script Explanation**
+
 The script makes an HTTP request to the Star Wars API to retrieve information about the specified movie. It then checks if the response contains a "characters" property. If it does, the script iterates through the list of character URLs, makes individual requests for each character, and prints their names to the console.
 
 If any errors occur during the requests, the script will display an error message.
@@ -44,6 +45,7 @@ If any errors occur during the requests, the script will display an error messag
 If the "characters" property is not found in the response, it will indicate that in the console.
 
 **Example Output**
+
 Here's an example of what the script's output might look like:
 
 ```
