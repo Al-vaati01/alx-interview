@@ -18,7 +18,7 @@ request(`https://swapi-api.alx-tools.com/api/films/${process.argv[2]}`, (error, 
                     return;
                 }
                 const data = JSON.parse(body);
-                console.log(data.name)
+                console.log(data.name);
             })
         });
     } else {
