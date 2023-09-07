@@ -3,7 +3,7 @@ const request = require('request');
 
 request(
     `https://swapi-api.alx-tools.com/api/films/${process.argv[2]}`,
-    (error, response, body) => {
+    (error, _, body) => {
       if (error) {
         console.error(error);
         return;
@@ -14,13 +14,13 @@ request(
 
       if (data && 'characters' in data) {
         data.characters.forEach((character) => {
-          request(character, (error, response, body) => {
+          request(character, (error, _, body) => {
             if (error) {
               console.error(error);
               return;
             }
             const data = JSON.parse(body);
-            return data.name;
+            console.log(data.name);
           });
         });
       } else {
