@@ -20,7 +20,7 @@ request(
               return;
             }
             const data = JSON.parse(body);
-            console.log(data.name);
+            return data.name;
           });
         });
       } else {
