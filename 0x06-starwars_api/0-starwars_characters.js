@@ -1,3 +1,4 @@
+#!/usr/bin/node
 const request = require('request');
 
 
@@ -25,4 +26,3 @@ request(`https://swapi-api.alx-tools.com/api/films/${process.argv[2]}`, (error, 
         console.log("No 'characters' property found in the response.");
     }
 });
-
