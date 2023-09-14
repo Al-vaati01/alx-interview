@@ -22,17 +22,13 @@ def rotate_2d_matrix(matrix) -> None:
         print("Not a valid matrix")
         return
 
-    rows = len(matrix)
-    cols = len(matrix[0])
-    new_matrix = []
+    n = len(matrix)
 
-    # Rotate the matrix 90 degrees clockwise
-    for i in range(cols):
-        temp = []
-        for j in range(rows):
-            temp.append(matrix[rows - j - 1][i])
-        new_matrix.append(temp)
+    # Transpose the matrix (swap rows and columns)
+    for i in range(n):
+        for j in range(i, n):
+            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
 
-    # Print the rotated matrix
-    for row in new_matrix:
-        print(row)
+    # Reverse each row to complete the 90-degree clockwise rotation
+    for i in range(n):
+        matrix[i].reverse()
